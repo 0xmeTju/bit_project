@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+  dvwa:
+    image: vulnerables/web-dvwa
+    container_name: dvwa-raw
+    restart: unless-stopped
+    ports:
+      - "8082:80"
+

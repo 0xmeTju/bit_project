@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  naxsi-dvwa:
+    image: vulnerables/web-dvwa
+    container_name: naxsi-dvwa
+    restart: unless-stopped
+    networks:
+      - dvwa-net
+
+  naxsi-waf:
+    image: dmgnx/nginx-naxsi:latest
+    container_name: naxsi-waf
+    restart: unless-stopped
+    depends_on:
+      - naxsi-dvwa
+    ports:
+      - "8081:80"             
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./naxsi:/etc/nginx/naxsi:ro
+      - ./logs:/var/log/nginx
+    networks:
+      - dvwa-net
+
+networks:
+  dvwa-net:
+    driver: bridge
+

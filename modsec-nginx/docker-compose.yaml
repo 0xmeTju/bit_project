@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  modsec-waf:
+    image: owasp/modsecurity-crs:nginx-alpine
+    container_name: modsec-waf
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/conf.d/default.conf:/etc/nginx/conf.d/dvwa-proxy.conf:ro
+    environment:
+      SEC_RULE_ENGINE: "DetectionOnly"     
+    depends_on:
+      - modsec-dvwa
+    networks:
+      - webnet
+
+  modsec-dvwa:
+    image: vulnerables/web-dvwa:latest
+    container_name: modsec-dvwa
+    environment:
+      SECURITY_LEVEL: low
+    networks:
+      - webnet
+
+networks:
+  webnet:
+    driver: bridge
