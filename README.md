@@ -20,3 +20,7 @@ To enable the **PHPIDS** WAF, login to the DVWA -> navigate to the DVWA Security
 # SQLMAP testing
 To use the automatic SQLMap script, use the `./waf-test.sh <<PHPSESSID_VALUE>>`.\
 Example: `./waf-test.sh m7m999r1ts7u0a21e61kr3oo91`
+
+# Github repo link
+Public repository is present on this link:
+https://github.com/0xmeTju/bit_project
