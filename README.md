@@ -1,6 +1,7 @@
 # Build
 This project contains 3 different WAF environments in their separate docker containers.\
 To build each one, change into the desired directory `cd naxsi` and run the build command `docker-compose up -d --build`.\
+To destroy current environments, use `docker-compose down`.\
 This will successfully build both the WAF proxy module and the vulnerable DVWA application, that has network communication forward to it by the WAF. All the modules are preconfigured.
 
 # Connecting to the environment
